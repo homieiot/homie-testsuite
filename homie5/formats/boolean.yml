@@ -1,0 +1,52 @@
+description: validating boolean formats
+
+tests:
+  - description: proper format is accepted
+    type: boolean
+    format: 'off,on'
+    valid: true
+  - description: reverse format is accepted
+    type: boolean
+    format: 'on,off'
+    valid: true
+  - description: format is optional
+    type: boolean
+    valid: true
+  - description: empty strings are not allowed
+    type: boolean
+    format: 'off,'
+    valid: false
+  - description: empty strings are not allowed
+    type: boolean
+    format: ',on'
+    valid: false
+  - description: space is allowed
+    type: boolean
+    format: 'off, '
+    valid: false
+  - description: space is allowed
+    type: boolean
+    format: ' ,on'
+    valid: false
+  - description: single entry is not allowed
+    type: boolean
+    format: 'on'
+    valid: false
+  - description: more than 2 entries are not allowed
+    type: boolean
+    format: 'on,off,between'
+    valid: false
+  - description: duplicate entries are not allowed
+    # this is not in the spec but makes sense?
+    type: boolean
+    format: 'on,on'
+    valid: false
+  - description: anything allowed, as long a comma separated
+    type: boolean
+    format: '@**&#%&@&,     5454      '
+    valid: true
+  - description: utf-8 characters are allowed
+    type: boolean
+    format: '👍,👎'
+    valid: true
+

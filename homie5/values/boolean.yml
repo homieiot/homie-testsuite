@@ -1,0 +1,70 @@
+description: validating boolean values
+
+tests:
+  - description: Passes valid boolean values
+    type: boolean
+    value: 'true'
+    valid: true
+  - description: Passes valid boolean values
+    type: boolean
+    value: 'false'
+    valid: true
+  - description: an empty string is not valid
+    type: boolean
+    value: ''
+    valid: false
+  - description: uppercase true is not allowed
+    type: boolean
+    value: 'TRUE'
+    valid: false
+  - description: uppercase false is not allowed
+    type: boolean
+    value: 'FALSE'
+    valid: false
+  - description: capitalcase is not allowed
+    type: boolean
+    value: 'True'
+    valid: false
+  - description: capitalcase is not allowed
+    type: boolean
+    value: 'False'
+    valid: false
+  - description: shorthand is not allowed
+    type: boolean
+    value: t
+    valid: false
+  - description: shorthand is not allowed
+    type: boolean
+    value: f
+    valid: false
+  - description: numeric string is not allowed
+    type: boolean
+    value: '1'
+    valid: false
+  - description: numeric string is not allowed
+    type: boolean
+    value: '0'
+    valid: false
+
+  # validating values with format
+  - description: with format booleans are accepted
+    type: boolean
+    value: 'true'
+    format: 'on,off'
+    valid: true
+  - description: with format booleans are accepted
+    type: boolean
+    value: 'false'
+    format: 'on,off'
+    valid: true
+  - description: with format labels are not accepted
+    type: boolean
+    value: 'on'
+    format: 'on,off'
+    valid: false
+  - description: with format labels are not accepted
+    type: boolean
+    value: 'off'
+    format: 'on,off'
+    valid: false
+
