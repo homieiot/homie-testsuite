@@ -55,7 +55,7 @@ Here’s an example of how the data looks in practice:
 
 ```yaml
 description: Normal integer value without format works
-type: propertyvalueinteger
+testtype: propertyvalueinteger
 definition:
   datatype: integer
 input_data: "12"
