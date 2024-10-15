@@ -17,7 +17,7 @@ tests:
     type: propertyvalue
     definition:
       datatype: boolean
-    input_data: ""
+    input_data: "\x00"
     valid: false
   - description: uppercase true is not allowed
     type: propertyvalue
