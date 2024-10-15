@@ -12,7 +12,7 @@ The main goal being consistent behaviour across clients.
 
 ## Format
 
-The testsuite provided multiple YAML testset files containing test defitions.
+The testsuite provided multiple YAML testset files containing test definitions.
 The data format of these files is described in the following chapters.
 
 ### Testset
