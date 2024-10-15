@@ -38,7 +38,7 @@ tests:
 Defines a specific test to be executed. A test consist of the following fields:
 
 - **`description`** (required): A string providing a brief explanation of the test case or the scenario it represents.
-- **`type`** (required): A string indicating the type of the property value or data being tested. Valid values are:
+- **`testtype`** (required): A string indicating the type of the property value or data being tested. Valid values are:
   - propertyformat
   - propertyvalueinteger
   - propertyvalue
