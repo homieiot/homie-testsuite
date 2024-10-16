@@ -2,67 +2,67 @@ description: validating boolean values
 
 tests:
   - description: Passes valid boolean values
-    type: propertyvalue
+    testtype: propertyvalue
     definition:
       datatype: boolean
     input_data: "true"
     valid: true
   - description: Passes valid boolean values
-    type: propertyvalue
+    testtype: propertyvalue
     definition:
       datatype: boolean
     input_data: "false"
     valid: true
   - description: an empty string is not valid
-    type: propertyvalue
+    testtype: propertyvalue
     definition:
       datatype: boolean
     input_data: "\x00"
     valid: false
   - description: uppercase true is not allowed
-    type: propertyvalue
+    testtype: propertyvalue
     definition:
       datatype: boolean
     input_data: "TRUE"
     valid: false
   - description: uppercase false is not allowed
-    type: propertyvalue
+    testtype: propertyvalue
     definition:
       datatype: boolean
     input_data: "FALSE"
     valid: false
   - description: capitalcase is not allowed
-    type: propertyvalue
+    testtype: propertyvalue
     definition:
       datatype: boolean
     input_data: "True"
     valid: false
   - description: capitalcase is not allowed
-    type: propertyvalue
+    testtype: propertyvalue
     definition:
       datatype: boolean
     input_data: "False"
     valid: false
   - description: shorthand is not allowed
-    type: propertyvalue
+    testtype: propertyvalue
     definition:
       datatype: boolean
     input_data: t
     valid: false
   - description: shorthand is not allowed
-    type: propertyvalue
+    testtype: propertyvalue
     definition:
       datatype: boolean
     input_data: f
     valid: false
   - description: numeric string is not allowed
-    type: propertyvalue
+    testtype: propertyvalue
     definition:
       datatype: boolean
     input_data: "1"
     valid: false
   - description: numeric string is not allowed
-    type: propertyvalue
+    testtype: propertyvalue
     definition:
       datatype: boolean
     input_data: "0"
@@ -70,28 +70,28 @@ tests:
 
   # validating values with format
   - description: with format booleans are accepted
-    type: propertyvalue
+    testtype: propertyvalue
     definition:
       datatype: boolean
       format: "on,off"
     input_data: "true"
     valid: true
   - description: with format booleans are accepted
-    type: propertyvalue
+    testtype: propertyvalue
     definition:
       datatype: boolean
       format: "on,off"
     input_data: "false"
     valid: true
   - description: with format labels are not accepted
-    type: propertyvalue
+    testtype: propertyvalue
     definition:
       datatype: boolean
       format: "on,off"
     input_data: "on"
     valid: false
   - description: with format labels are not accepted
-    type: propertyvalue
+    testtype: propertyvalue
     definition:
       datatype: boolean
       format: "on,off"
