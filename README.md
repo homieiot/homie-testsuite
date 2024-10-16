@@ -1,31 +1,28 @@
-# testsuite
+# Test Suite
 
-testsuite for homie client libraries
+Test suite for Homie client libraries.
 
-this is under early development
+This project is in early development.
 
 ## Purpose
 
-This test suite is intended for coders who write homie compatible software to quickly get a solid set of tests to run against their implementations.
-
-The main goal being consistent behaviour across clients.
+This test suite is designed for developers writing Homie-compatible software, providing a comprehensive set of tests to validate their implementations. The primary goal is to ensure consistent behavior across different clients.
 
 ## Format
 
-The testsuite provided multiple YAML testset files containing test definitions.
-The data format of these files is described in the following chapters.
+The test suite provides multiple YAML test set files, each containing test definitions. The format and structure of these files are explained in the following sections.
 
-### Testset
+### Test Set
 
-A YAML file containing a set of tests to be run. A testset contains the following fields:
+A YAML file that contains a group of tests to be executed. A test set includes the following fields:
 
-- **`description`** (required): A string providing a brief explanation of the testset and its contained tests.
-- **`tests`** (required): A list of `test` definitions (see next chapter)
+- **`description`** (required): A brief explanation of the test set and the tests it contains.
+- **`tests`** (required): A list of `test` definitions (see the next section).
 
 #### Example:
 
 ```yaml
-description: validating boolean values
+description: Validating boolean values
 
 tests:
   - ...test definition ...
@@ -35,29 +32,29 @@ tests:
 
 ### Test
 
-Defines a specific test to be executed. A test consist of the following fields:
+A test defines a specific scenario to be executed and validated. A test consists of the following fields:
 
-- **`description`** (required): A string providing a brief explanation of the test case or the scenario it represents.
-- **`testtype`** (required): A string indicating the type of the property value or data being tested. Valid values are:
-  - propertyformat
-  - propertyvalueinteger
-  - propertyvalue
-  - homieid
+- **`description`** (required): A brief explanation of the test case or the scenario it represents.
+- **`testtype`** (required): A string that indicates the type of the property value or data being tested. Valid values include:
+  - `propertyformat`
+  - `propertyvalueinteger`
+  - `propertyvalue`
+  - `homieid`
   - ...
-- **`definition`**(optional depending on `type`): The test definition (this can for example be a property, node or device descriptions).
-- **`input_data`**(optional depending on `type`): The input data provided for the test, which may be represented as a string or other formats, depending on the `type`.
-- **`output_data`**(optional depending on `type`): The expected result after processing the `input_data`. This field is typically represented in the correct data type (e.g., `integer` for an integer test).
-- **`valid`**(required): A boolean indicating whether the defined test is supposed to pass (true) or fail (false)
+- **`definition`** (optional, depending on `testtype`): The test definition, which could include properties, nodes, or device descriptions.
+- **`input_data`** (optional, depending on `testtype`): The input data provided for the test, which may be represented as a string or other formats, depending on the `testtype`.
+- **`output_data`** (optional, depending on `testtype`): The expected result after processing the `input_data`, typically represented in the appropriate data type (e.g., `integer` for an integer test).
+- **`valid`** (required): A boolean indicating whether the test is expected to pass (`true`) or fail (`false`).
 
-#### Example
+#### Example:
 
-Here’s an example of how the data looks in practice:
+Here’s an example of how the test data looks in practice:
 
 ```yaml
 description: Normal integer value without format works
 testtype: propertyvalueinteger
 definition:
-  datatype: integer
+datatype: integer
 input_data: "12"
 output_data: 12
 valid: true
