@@ -1,0 +1,56 @@
+description: validating color formats
+
+tests:
+  - description: proper format is accepted
+    testtype: propertydescription
+    definition:
+      datatype: color
+      format: "rgb,hsv,xyz"
+    valid: true
+  - description: reverse format is accepted
+    testtype: propertydescription
+    definition:
+      datatype: color
+      format: "xyz,hsv,rgb"
+    valid: true
+  - description: single format is accepted
+    testtype: propertydescription
+    definition:
+      datatype: color
+      format: "rgb"
+    valid: true
+  - description: format is required
+    testtype: propertydescription
+    definition:
+      datatype: color
+    valid: false
+  - description: empty format is rejected
+    testtype: propertydescription
+    definition:
+      datatype: color
+      format: ""
+    valid: false
+  - description: unsupported format is rejected
+    testtype: propertydescription
+    definition:
+      datatype: color
+      format: "cmyk"
+    valid: false
+  - description: combination of supported and unsupported formats is rejected
+    testtype: propertydescription
+    definition:
+      datatype: color
+      format: "rgb,cmyk"
+    valid: false
+  - description: duplicate formats are rejected
+    testtype: propertydescription
+    definition:
+      datatype: color
+      format: "rgb,hsv,hsv"
+    valid: false
+  - description: leading and trailing whitespace in format is not allowed
+    testtype: propertydescription
+    definition:
+      datatype: color
+      format: " rgb , hsv , xyz "
+    valid: false

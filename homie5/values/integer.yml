@@ -1,4 +1,4 @@
-description: validating boolean values
+description: validating integer values
 
 tests:
   - description: Normal integer value without format works

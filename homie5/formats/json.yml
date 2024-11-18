@@ -1,0 +1,39 @@
+description: validating JSON formats
+
+tests:
+  - description: proper format is accepted
+    testtype: propertydescription
+    definition:
+      datatype: json
+      format: "{\"anyOf\": [{\"type\": \"array\"},{\"type\": \"object\"}]}"
+    valid: true
+  - description: non-string format is not allowed
+    testtype: propertydescription
+    definition:
+      datatype: json
+      format: {"anyOf": [{"type": "array"},{"type": "object"}]}
+    valid: false
+  - description: must be an object; array is not allowed
+    testtype: propertydescription
+    definition:
+      datatype: json
+      format: "[]"
+    valid: false
+  - description: must be an object; string is not allowed
+    testtype: propertydescription
+    definition:
+      datatype: json
+      format: "\"hello\""
+    valid: false
+  - description: must be an object; number is not allowed
+    testtype: propertydescription
+    definition:
+      datatype: json
+      format: "42"
+    valid: false
+  - description: must be an object; invalid json is not allowed
+    testtype: propertydescription
+    definition:
+      datatype: json
+      format: "{"
+    valid: false
