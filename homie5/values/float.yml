@@ -1,3 +1,98 @@
 description: validating float values
 
-# TODO: implement these tests
+tests:
+  - description: Valid float value without format
+    testtype: propertyvaluefloat
+    definition:
+      datatype: float
+    input_data: "123.45"
+    output_data: 123.45
+    valid: true
+
+  - description: Valid negative float value
+    testtype: propertyvaluefloat
+    definition:
+      datatype: float
+    input_data: "-987.65"
+    output_data: -987.65
+    valid: true
+
+  - description: Invalid float with multiple decimal points
+    testtype: propertyvaluefloat
+    definition:
+      datatype: float
+    input_data: "123.45.67"
+    valid: false
+
+  - description: Invalid float with extra characters
+    testtype: propertyvaluefloat
+    definition:
+      datatype: float
+    input_data: "123.45abc"
+    valid: false
+
+  - description: Valid float with open-ended format
+    testtype: propertyvaluefloat
+    definition:
+      datatype: float
+      format: "0:"
+    input_data: "123.45"
+    output_data: 123.45
+    valid: true
+
+  - description: Invalid float below minimum format
+    testtype: propertyvaluefloat
+    definition:
+      datatype: float
+      format: "0:"
+    input_data: "-1.23"
+    valid: false
+
+  - description: Invalid float with whitespace
+    testtype: propertyvaluefloat
+    definition:
+      datatype: float
+    input_data: " 123.45 "
+    valid: false
+
+  - description: Invalid float with unsupported value "Infinity"
+    testtype: propertyvaluefloat
+    definition:
+      datatype: float
+    input_data: "Infinity"
+    valid: false
+
+  - description: Normal integer value without format works
+    testtype: propertyvalueinteger
+    definition:
+      datatype: integer
+    input_data: "12"
+    output_data: 12
+    valid: true
+
+  - description: Rounded step for min max bounds works
+    testtype: propertyvalueinteger
+    definition:
+      datatype: integer
+      format: "0:10:2"
+    input_data: "9"
+    output_data: 10
+    valid: true
+
+  - description: Rounded step for max bounds works
+    testtype: propertyvalueinteger
+    definition:
+      datatype: integer
+      format: ":10:2"
+    input_data: "9"
+    output_data: 8
+    valid: true
+
+  - description: Rounded step for min bounds works
+    testtype: propertyvalueinteger
+    definition:
+      datatype: integer
+      format: "0::2"
+    input_data: "9"
+    output_data: 10
+    valid: true
