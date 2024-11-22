@@ -1,0 +1,122 @@
+description: validating color values
+
+tests:
+  - description: Valid RGB payload
+    testtype: propertyvalue
+    definition:
+      datatype: color
+      format: "rgb"
+    input_data: "rgb,100,150,200"
+    valid: true
+  - description: Invalid RGB payload (out of range)
+    testtype: propertyvalue
+    definition:
+      datatype: color
+      format: "rgb"
+    input_data: "rgb,300,150,200"
+    valid: false
+  - description: Valid HSV payload
+    testtype: propertyvalue
+    definition:
+      datatype: color
+      format: "hsv"
+    input_data: "hsv,300,50,75"
+    valid: true
+  - description: Invalid HSV payload (H out of range)
+    testtype: propertyvalue
+    definition:
+      datatype: color
+      format: "hsv"
+    input_data: "hsv,400,50,75"
+    valid: false
+  - description: Invalid HSV payload (S out of range)
+    testtype: propertyvalue
+    definition:
+      datatype: color
+      format: "hsv"
+    input_data: "hsv,300,150,75"
+    valid: false
+  - description: Valid XYZ payload
+    testtype: propertyvalue
+    definition:
+      datatype: color
+      format: "xyz"
+    input_data: "xyz,0.25,0.34"
+    valid: true
+  - description: Invalid XYZ payload (X out of range)
+    testtype: propertyvalue
+    definition:
+      datatype: color
+      format: "xyz"
+    input_data: "xyz,1.5,0.34"
+    valid: false
+  - description: Invalid XYZ payload (Y out of range)
+    testtype: propertyvalue
+    definition:
+      datatype: color
+      format: "xyz"
+    input_data: "xyz,0.25,1.2"
+    valid: false
+  - description: Empty payload is rejected
+    testtype: propertyvalue
+    definition:
+      datatype: color
+      format: "rgb"
+    input_data: ""
+    valid: false
+  - description: Invalid payload with spaces
+    testtype: propertyvalue
+    definition:
+      datatype: color
+      format: "rgb"
+    input_data: "rgb, 100, 150, 200"
+    valid: false
+  - description: Invalid payload with extra characters
+    testtype: propertyvalue
+    definition:
+      datatype: color
+      format: "rgb"
+    input_data: "rgb;100;150;200"
+    valid: false
+  - description: Valid RGB payload with float values
+    testtype: propertyvalue
+    definition:
+      datatype: color
+      format: "rgb"
+    input_data: "rgb,100.5,150.25,200.75"
+    valid: true
+  - description: Valid HSV payload with float values
+    testtype: propertyvalue
+    definition:
+      datatype: color
+      format: "hsv"
+    input_data: "hsv,300.5,50.25,75.75"
+    valid: true
+  - description: Valid XYZ payload with float values
+    testtype: propertyvalue
+    definition:
+      datatype: color
+      format: "xyz"
+    input_data: "xyz,0.25,0.345"
+    valid: true
+  - description: Valid RGB payload in a multi-format definition
+    testtype: propertyvalue
+    definition:
+      datatype: color
+      format: "rgb,hsv,xyz"
+    input_data: "rgb,100,150,200"
+    valid: true
+  - description: Valid HSV payload in a multi-format definition
+    testtype: propertyvalue
+    definition:
+      datatype: color
+      format: "rgb,hsv,xyz"
+    input_data: "hsv,300,50,75"
+    valid: true
+  - description: Valid XYZ payload in a multi-format definition
+    testtype: propertyvalue
+    definition:
+      datatype: color
+      format: "rgb,hsv,xyz"
+    input_data: "xyz,0.25,0.34"
+    valid: true

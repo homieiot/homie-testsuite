@@ -1,0 +1,5 @@
+description: validating duration formats
+
+# This type does not have a specified format entry in the Homie convention
+
+tests: []

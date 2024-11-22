@@ -1,0 +1,72 @@
+description: validating enum formats
+
+# A comma-separated list of non-quoted values. Eg. value1,value2,value3. Leading- and 
+# trailing whitespace is significant. Individual values cannot be an empty string, 
+# hence at least 1 value must be specified in the format. Duplicates are not allowed.
+
+tests:
+  - description: proper format is accepted
+    testtype: propertydescription
+    definition:
+      datatype: enum
+      format: "one,two,three"
+    valid: true
+  - description: format is required
+    testtype: propertydescription
+    definition:
+      datatype: enum
+    valid: false
+  - description: empty format is rejected
+    testtype: propertydescription
+    definition:
+      datatype: enum
+      format: ""
+    valid: false
+  - description: whitespace only format is accepted
+    testtype: propertydescription
+    definition:
+      datatype: enum
+      format: " "
+    valid: true
+  - description: duplicate values are rejected
+    testtype: propertydescription
+    definition:
+      datatype: enum
+      format: "one,one,two"
+    valid: false
+  - description: leading whitespace is preserved
+    testtype: propertydescription
+    definition:
+      datatype: enum
+      format: " one,two,three"
+    valid: true
+  - description: trailing whitespace is preserved
+    testtype: propertydescription
+    definition:
+      datatype: enum
+      format: "one,two,three "
+    valid: true
+  - description: leading and trailing whitespace is preserved
+    testtype: propertydescription
+    definition:
+      datatype: enum
+      format: " one,two, three "
+    valid: true
+  - description: empty values are rejected
+    testtype: propertydescription
+    definition:
+      datatype: enum
+      format: "one,,three"
+    valid: false
+  - description: single value format is accepted
+    testtype: propertydescription
+    definition:
+      datatype: enum
+      format: "onlyone"
+    valid: true
+  - description: whitespace only formats are allowed
+    testtype: propertydescription
+    definition:
+      datatype: enum
+      format: " ,  ,   "
+    valid: true
