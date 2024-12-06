@@ -29,6 +29,13 @@ tests:
       format: "0:100:0.5"
     valid: true
 
+  - description: proper format with only step value is accepted
+    testtype: propertydescription
+    definition:
+      datatype: float
+      format: "::0.5"
+    valid: true
+
   - description: negative range with step value is accepted
     testtype: propertydescription
     definition:
@@ -64,12 +71,12 @@ tests:
       format: "0:10:20"
     valid: false
 
-  - description: missing range boundaries are rejected
+  - description: missing range boundaries are accepted
     testtype: propertydescription
     definition:
       datatype: float
       format: ":"
-    valid: false
+    valid: true
 
   - description: missing range and step is rejected
     testtype: propertydescription

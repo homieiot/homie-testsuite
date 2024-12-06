@@ -17,6 +17,14 @@ tests:
     output_data: "!@#$%^&*()_+|"
     valid: true
 
+  - description: Valid empty string value
+    testtype: propertyvaluestring
+    definition:
+      datatype: string
+    input_data: "\x00"
+    output_data: ""
+    valid: true
+
   - description: Valid string with Unicode characters
     testtype: propertyvaluestring
     definition:

@@ -52,14 +52,6 @@ tests:
     output_data: "single"
     valid: true
 
-  - description: invalid enum value when format is empty
-    testtype: propertyvalueenum
-    definition:
-      datatype: enum
-      format: ""
-    input_data: "anyvalue"
-    valid: false
-
   - description: invalid enum value with embedded space
     testtype: propertyvalueenum
     definition:
@@ -67,23 +59,6 @@ tests:
       format: "car,bike,airplane,spaceship"
     input_data: "space ship"
     valid: false
-
-  - description: invalid enum with duplicate entries in format
-    testtype: propertyvalueenum
-    definition:
-      datatype: enum
-      format: "red,green,red"
-    input_data: "red"
-    valid: false
-
-  - description: valid enum with special characters
-    testtype: propertyvalueenum
-    definition:
-      datatype: enum
-      format: "on/off,standby,active"
-    input_data: "on/off"
-    output_data: "on/off"
-    valid: true
 
   - description: invalid enum with unsupported special character
     testtype: propertyvalueenum

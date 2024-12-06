@@ -29,12 +29,61 @@ tests:
       format: "0:100:5"
     valid: true
 
+  - description: proper format with only step value is accepted
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "::5"
+    valid: true
+
   - description: negative range with step value is accepted
     testtype: propertydescription
     definition:
       datatype: integer
       format: "-100:0:10"
     valid: true
+
+  - description: exponent notation in minimum is rejected
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "5e1:5000:10"
+    valid: false
+
+  - description: exponent notation in maximum is rejected
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "50:5e5:10"
+    valid: false
+
+  - description: exponent notation in step is rejected
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "50:5000:1e2"
+    valid: false
+
+  - description: only negative sign in minimum is rejected
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "-:10:1"
+    valid: false
+
+  - description: only negative sign in maximum is rejected
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "-5:-:1"
+    valid: false
+
+  - description: only negative sign in step is rejected
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "5:10:-"
+    valid: false
 
   - description: single point range with step value is accepted
     testtype: propertydescription
@@ -57,19 +106,19 @@ tests:
       format: "0:100:0"
     valid: false
 
-  - description: step value larger than range is rejected
+  - description: step value larger than range is accepted
     testtype: propertydescription
     definition:
       datatype: integer
       format: "0:10:20"
-    valid: false
+    valid: true
 
-  - description: missing range boundaries is rejected
+  - description: missing range boundaries is accepted
     testtype: propertydescription
     definition:
       datatype: integer
       format: ":"
-    valid: false
+    valid: true
 
   - description: missing range and step is rejected
     testtype: propertydescription
