@@ -1,3 +1,74 @@
 description: validating string values
 
-# TODO: implement these tests
+tests:
+  - description: Valid string with normal characters
+    testtype: propertyvaluestring
+    definition:
+      datatype: string
+    input_data: "HelloWorld123"
+    output_data: "HelloWorld123"
+    valid: true
+
+  - description: Valid string with special characters
+    testtype: propertyvaluestring
+    definition:
+      datatype: string
+    input_data: "!@#$%^&*()_+|"
+    output_data: "!@#$%^&*()_+|"
+    valid: true
+
+  - description: Valid empty string value
+    testtype: propertyvaluestring
+    definition:
+      datatype: string
+    input_data: "\x00"
+    output_data: ""
+    valid: true
+
+  - description: Valid string with Unicode characters
+    testtype: propertyvaluestring
+    definition:
+      datatype: string
+    input_data: "こんにちは世界" # "Hello, World" in Japanese
+    output_data: "こんにちは世界"
+    valid: true
+
+  - description: Valid string with whitespace characters
+    testtype: propertyvaluestring
+    definition:
+      datatype: string
+    input_data: "   leading and trailing spaces   "
+    output_data: "   leading and trailing spaces   "
+    valid: true
+
+  - description: Valid string with mixed alphanumeric and symbols
+    testtype: propertyvaluestring
+    definition:
+      datatype: string
+    input_data: "abc123!@#xyz"
+    output_data: "abc123!@#xyz"
+    valid: true
+
+  - description: Valid string with escape sequences
+    testtype: propertyvaluestring
+    definition:
+      datatype: string
+    input_data: "Line1\\nLine2\\tTabbed"
+    output_data: "Line1\\nLine2\\tTabbed"
+    valid: true
+
+  - description: Valid string with multilingual support
+    testtype: propertyvaluestring
+    definition:
+      datatype: string
+    input_data: "مرحبا بالعالم" # "Hello World" in Arabic
+    output_data: "مرحبا بالعالم"
+    valid: true
+
+  - description: Valid string with numerical content
+    testtype: propertyvaluestring
+    definition:
+      datatype: string
+    input_data: "1234567890"
+    output_data: "1234567890"
+    valid: true

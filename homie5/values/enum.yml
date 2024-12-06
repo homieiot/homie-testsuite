@@ -1,3 +1,95 @@
 description: validating enum values
 
-# TODO: implement these tests
+tests:
+  - description: valid enum value in list
+    testtype: propertyvalueenum
+    definition:
+      datatype: enum
+      format: "red,green,blue"
+    input_data: "green"
+    output_data: "green"
+    valid: true
+
+  - description: valid enum value with trailing space in format
+    testtype: propertyvalueenum
+    definition:
+      datatype: enum
+      format: "red ,green , blue"
+    input_data: "green "
+    output_data: "green "
+    valid: true
+
+  - description: invalid enum value not in list
+    testtype: propertyvalueenum
+    definition:
+      datatype: enum
+      format: "red,green,blue"
+    input_data: "yellow"
+    valid: false
+
+  - description: invalid enum with case mismatch
+    testtype: propertyvalueenum
+    definition:
+      datatype: enum
+      format: "red,green,blue"
+    input_data: "Green"
+    valid: false
+
+  - description: invalid enum with leading/trailing whitespace
+    testtype: propertyvalueenum
+    definition:
+      datatype: enum
+      format: "red,green,blue"
+    input_data: " green "
+    valid: false
+
+  - description: valid enum with single value in format
+    testtype: propertyvalueenum
+    definition:
+      datatype: enum
+      format: "single"
+    input_data: "single"
+    output_data: "single"
+    valid: true
+
+  - description: invalid enum value with embedded space
+    testtype: propertyvalueenum
+    definition:
+      datatype: enum
+      format: "car,bike,airplane,spaceship"
+    input_data: "space ship"
+    valid: false
+
+  - description: invalid enum with unsupported special character
+    testtype: propertyvalueenum
+    definition:
+      datatype: enum
+      format: "yes,no,maybe"
+    input_data: "yes?"
+    valid: false
+
+  - description: valid enum at boundary length
+    testtype: propertyvalueenum
+    definition:
+      datatype: enum
+      format: "a,b,c" # Short format for simplicity
+    input_data: "c"
+    output_data: "c"
+    valid: true
+
+  - description: invalid enum with empty string as value
+    testtype: propertyvalueenum
+    definition:
+      datatype: enum
+      format: "red,green,blue"
+    input_data: ""
+    valid: false
+
+  - description: valid enum with numbers as values
+    testtype: propertyvalueenum
+    definition:
+      datatype: enum
+      format: "1,2,3,4"
+    input_data: "2"
+    output_data: "2"
+    valid: true

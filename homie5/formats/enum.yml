@@ -1,7 +1,7 @@
 description: validating enum formats
 
-# A comma-separated list of non-quoted values. Eg. value1,value2,value3. Leading- and 
-# trailing whitespace is significant. Individual values cannot be an empty string, 
+# A comma-separated list of non-quoted values. Eg. value1,value2,value3. Leading- and
+# trailing whitespace is significant. Individual values cannot be an empty string,
 # hence at least 1 value must be specified in the format. Duplicates are not allowed.
 
 tests:
@@ -70,3 +70,33 @@ tests:
       datatype: enum
       format: " ,  ,   "
     valid: true
+  - description: special characters are allowed
+    testtype: propertydescription
+    definition:
+      datatype: enum
+      format: "on/off,standby,active"
+    valid: true
+  - description: leading comma is rejected
+    testtype: propertydescription
+    definition:
+      datatype: enum
+      format: ",value1,value2"
+    valid: false
+  - description: trailing comma is rejected
+    testtype: propertydescription
+    definition:
+      datatype: enum
+      format: "value1,value2,"
+    valid: false
+  - description: number values are allowed
+    testtype: propertydescription
+    definition:
+      datatype: enum
+      format: "1,2,3"
+    valid: true
+  - description: embedded newline characters are rejected
+    testtype: propertydescription
+    definition:
+      datatype: enum
+      format: "value1,value2\nvalue3"
+    valid: false

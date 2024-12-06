@@ -1,6 +1,12 @@
 description: validating color formats
 
 tests:
+  - description: proper format with two color types is accepted
+    testtype: propertydescription
+    definition:
+      datatype: color
+      format: "rgb,hsv"
+    valid: true
   - description: proper format is accepted
     testtype: propertydescription
     definition:
@@ -13,11 +19,23 @@ tests:
       datatype: color
       format: "xyz,hsv,rgb"
     valid: true
-  - description: single format is accepted
+  - description: single format rgb is accepted
     testtype: propertydescription
     definition:
       datatype: color
       format: "rgb"
+    valid: true
+  - description: single format hsv is accepted
+    testtype: propertydescription
+    definition:
+      datatype: color
+      format: "hsv"
+    valid: true
+  - description: single format xyz is accepted
+    testtype: propertydescription
+    definition:
+      datatype: color
+      format: "xyz"
     valid: true
   - description: format is required
     testtype: propertydescription
@@ -53,4 +71,22 @@ tests:
     definition:
       datatype: color
       format: " rgb , hsv , xyz "
+    valid: false
+  - description: dublicate color types are rejected
+    testtype: propertydescription
+    definition:
+      datatype: color
+      format: "rgb,rgb"
+    valid: false
+  - description: trailing comma in format is rejected
+    testtype: propertydescription
+    definition:
+      datatype: color
+      format: "rgb,"
+    valid: false
+  - description: leading comma in format is rejected
+    testtype: propertydescription
+    definition:
+      datatype: color
+      format: ",rgb"
     valid: false
