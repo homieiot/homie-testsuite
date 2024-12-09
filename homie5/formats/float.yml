@@ -64,12 +64,12 @@ tests:
       format: "0:100:0"
     valid: false
 
-  - description: step value larger than range is rejected
+  - description: step value larger than range is accepted
     testtype: propertydescription
     definition:
       datatype: float
       format: "0:10:20"
-    valid: false
+    valid: true
 
   - description: missing range boundaries are accepted
     testtype: propertydescription
