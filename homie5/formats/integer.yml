@@ -1,5 +1,156 @@
 description: validating integer formats
 
-# TODO: implement these tests
+tests:
+  - description: proper open-ended minimum format is accepted
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "0:"
+    valid: true
 
-tests: []
+  - description: proper open-ended maximum format is accepted
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: ":100"
+    valid: true
+
+  - description: proper closed range format is accepted
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "10:50"
+    valid: true
+
+  - description: proper format with step value is accepted
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "0:100:5"
+    valid: true
+
+  - description: proper format with only step value is accepted
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "::5"
+    valid: true
+
+  - description: negative range with step value is accepted
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "-100:0:10"
+    valid: true
+
+  - description: exponent notation in minimum is rejected
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "5e1:5000:10"
+    valid: false
+
+  - description: exponent notation in maximum is rejected
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "50:5e5:10"
+    valid: false
+
+  - description: exponent notation in step is rejected
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "50:5000:1e2"
+    valid: false
+
+  - description: only negative sign in minimum is rejected
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "-:10:1"
+    valid: false
+
+  - description: only negative sign in maximum is rejected
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "-5:-:1"
+    valid: false
+
+  - description: only negative sign in step is rejected
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "5:10:-"
+    valid: false
+
+  - description: single point range with step value is accepted
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "5:5:1"
+    valid: true
+
+  - description: reverse range is rejected
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "50:10"
+    valid: false
+
+  - description: step value of zero is rejected
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "0:100:0"
+    valid: false
+
+  - description: step value larger than range is accepted
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "0:10:20"
+    valid: true
+
+  - description: missing range boundaries is accepted
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: ":"
+    valid: true
+
+  - description: missing range and step is rejected
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "::"
+    valid: false
+
+  - description: non-numeric boundaries are rejected
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "a:b"
+    valid: false
+
+  - description: mixed numeric and non-numeric boundaries are rejected
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "0:x"
+    valid: false
+
+  - description: negative step value is rejected
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "0:100:-10"
+    valid: false
+
+  - description: excess delimiters are rejected
+    testtype: propertydescription
+    definition:
+      datatype: integer
+      format: "0:100:5:10"
+    valid: false
