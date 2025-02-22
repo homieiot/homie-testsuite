@@ -13,16 +13,16 @@ tests:
     definition:
       datatype: integer
       format: "0:10:2"
-    input_data: "9"
-    output_data: 10
+    input_data: "5"
+    output_data: 6
     valid: true
   - description: Rounded step for max bounds works
     testtype: propertyvalueinteger
     definition:
       datatype: integer
       format: ":10:2"
-    input_data: "9"
-    output_data: 8
+    input_data: "5"
+    output_data: 6
     valid: true
   - description: Rounded step for min bounds works
     testtype: propertyvalueinteger

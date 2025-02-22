@@ -62,36 +62,36 @@ tests:
     input_data: "Infinity"
     valid: false
 
-  - description: Normal integer value without format works
-    testtype: propertyvalueinteger
+  - description: Normal float value without format works
+    testtype: propertyvaluefloat
     definition:
-      datatype: integer
+      datatype: float
     input_data: "12"
     output_data: 12
     valid: true
 
   - description: Rounded step for min max bounds works
-    testtype: propertyvalueinteger
+    testtype: propertyvaluefloat
     definition:
-      datatype: integer
+      datatype: float
       format: "0:10:2"
     input_data: "9"
     output_data: 10
     valid: true
 
   - description: Rounded step for max bounds works
-    testtype: propertyvalueinteger
+    testtype: propertyvaluefloat
     definition:
-      datatype: integer
-      format: ":10:2"
-    input_data: "9"
-    output_data: 8
+      datatype: float
+      format: ":21:3"
+    input_data: "16.4"
+    output_data: 15
     valid: true
 
   - description: Rounded step for min bounds works
-    testtype: propertyvalueinteger
+    testtype: propertyvaluefloat
     definition:
-      datatype: integer
+      datatype: float
       format: "0::2"
     input_data: "9"
     output_data: 10
