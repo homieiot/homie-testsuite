@@ -54,7 +54,8 @@ Here’s an example of how the test data looks in practice:
 description: Normal integer value without format works
 testtype: propertyvalueinteger
 definition:
-datatype: integer
+  datatype: integer
+  format: "0:10:2"
 input_data: "12"
 output_data: 12
 valid: true
